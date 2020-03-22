@@ -1,0 +1,91 @@
+@import "~css-wipe";
+
+body {
+  color: #2c3e50;
+  font-family: "Roboto Mono", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.ly_cont {
+  max-width: 1230px;
+  padding: 60px 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 90%;
+  margin: 0 auto;
+
+  thead {
+    th {
+      border-bottom: 2px solid #ccc;
+      height: 30px;
+      text-align: left;
+      font-size: 1em;
+      cursor: pointer;
+
+      span {
+        margin-left: 5px;
+
+        &:hover {
+          text-decoration: underline;
+          text-decoration-style: dotted;
+        }
+      }
+
+      i {
+        color: #aaa;
+        &.active {
+          color: #ff6633;
+          + span {
+            color: #ff6633;
+          }
+        }
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(odd) {
+        background-color: #fafafa;
+      }
+    }
+
+    td {
+      vertical-align: middle;
+      border-bottom: 1px dotted #ccc;
+      padding: 0 10px;
+      height: 48px;
+      font-size: 1em;
+    }
+  }
+}
+
+.bl-pagenation {
+  margin: 0.5em 0;
+  text-align: end;
+  margin-top: 20px;
+  margin-right: 40px;
+
+  button {
+    margin: 0 12px;
+    font-size: 1rem;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  button {
+    border: 1px solid #ccc;
+    outline: none;
+    background-color: #fff;
+  }
+}
