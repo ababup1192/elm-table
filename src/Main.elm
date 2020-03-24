@@ -299,8 +299,11 @@ view { numOfPage, personList, sortTarget } =
                             "fa-caret-down"
                    )
 
+        limit =
+            5
+
         maxPage =
-            List.length personList // 5
+            List.length personList // limit
     in
     main_ [ class "ly_cont" ]
         [ table []
@@ -379,8 +382,8 @@ view { numOfPage, personList, sortTarget } =
                                     sortDirectionCompare dir a.lastUpdate b.lastUpdate
                         )
                     -- Pagination
-                    |> List.drop ((numOfPage - 1) * 5)
-                    |> List.take 5
+                    |> List.drop ((numOfPage - 1) * limit)
+                    |> List.take limit
                     -- Table
                     |> List.map
                         (\{ firstName, lastName, email, age, country, category, lastUpdate } ->
@@ -403,7 +406,7 @@ view { numOfPage, personList, sortTarget } =
               else
                 text ""
             , span [] [ text "Page ", strong [] [ text <| String.fromInt numOfPage ], text <| " of " ++ String.fromInt maxPage ]
-            , if numOfPage - 1 <= maxPage then
+            , if numOfPage < maxPage then
                 button [ onClick NextPage ] [ i [ class "fas fa-caret-right" ] [] ]
 
               else
