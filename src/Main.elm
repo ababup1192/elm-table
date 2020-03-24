@@ -138,17 +138,28 @@ update msg model =
     let
         { sortTarget, numOfPage } =
             model
+
+        toggleDirection direction =
+            case direction of
+                Asc ->
+                    Desc
+
+                Desc ->
+                    Asc
+
+        sortColumn column =
+            case sortTarget of
+                SortTarget clmn direction ->
+                    if column == clmn then
+                        SortTarget column <| toggleDirection direction
+
+                    else
+                        SortTarget column Asc
     in
     case msg of
         SortFirstName ->
             ( { model
-                | sortTarget =
-                    case sortTarget of
-                        SortTarget FirstName Asc ->
-                            SortTarget FirstName Desc
-
-                        _ ->
-                            SortTarget FirstName Asc
+                | sortTarget = sortColumn FirstName
                 , numOfPage = 1
               }
             , Cmd.none
@@ -156,13 +167,7 @@ update msg model =
 
         SortLastName ->
             ( { model
-                | sortTarget =
-                    case sortTarget of
-                        SortTarget LastName Asc ->
-                            SortTarget LastName Desc
-
-                        _ ->
-                            SortTarget LastName Asc
+                | sortTarget = sortColumn LastName
                 , numOfPage = 1
               }
             , Cmd.none
@@ -170,13 +175,7 @@ update msg model =
 
         SortEmail ->
             ( { model
-                | sortTarget =
-                    case sortTarget of
-                        SortTarget Email Asc ->
-                            SortTarget Email Desc
-
-                        _ ->
-                            SortTarget Email Asc
+                | sortTarget = sortColumn Email
                 , numOfPage = 1
               }
             , Cmd.none
@@ -184,13 +183,7 @@ update msg model =
 
         SortAge ->
             ( { model
-                | sortTarget =
-                    case sortTarget of
-                        SortTarget Age Asc ->
-                            SortTarget Age Desc
-
-                        _ ->
-                            SortTarget Age Asc
+                | sortTarget = sortColumn Age
                 , numOfPage = 1
               }
             , Cmd.none
@@ -198,13 +191,7 @@ update msg model =
 
         SortCountry ->
             ( { model
-                | sortTarget =
-                    case sortTarget of
-                        SortTarget Country Asc ->
-                            SortTarget Country Desc
-
-                        _ ->
-                            SortTarget Country Asc
+                | sortTarget = sortColumn Country
                 , numOfPage = 1
               }
             , Cmd.none
@@ -212,13 +199,7 @@ update msg model =
 
         SortCategory ->
             ( { model
-                | sortTarget =
-                    case sortTarget of
-                        SortTarget Category Asc ->
-                            SortTarget Category Desc
-
-                        _ ->
-                            SortTarget Category Asc
+                | sortTarget = sortColumn Category
                 , numOfPage = 1
               }
             , Cmd.none
@@ -226,13 +207,7 @@ update msg model =
 
         SortLastUpdate ->
             ( { model
-                | sortTarget =
-                    case sortTarget of
-                        SortTarget LastUpdate Asc ->
-                            SortTarget LastUpdate Desc
-
-                        _ ->
-                            SortTarget LastUpdate Asc
+                | sortTarget = sortColumn LastUpdate
                 , numOfPage = 1
               }
             , Cmd.none
